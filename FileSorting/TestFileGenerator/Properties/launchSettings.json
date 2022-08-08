@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TestFileGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "10000000000000 plik.txt"
+    }
+  }
+}
