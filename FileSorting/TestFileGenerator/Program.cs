@@ -1,6 +1,6 @@
 ﻿namespace TestFileGenerator
 {
-    internal class TestFileGenerator
+    internal static class TestFileGenerator
     {
         static void Main(string[] args)
         {

@@ -14,7 +14,7 @@ namespace TestFileGenerator
         private const string _outputPathUsedWords = "used-words.dat";
         private const string _characters = "abcdefghijklmnopqrstuvwxyz";
         private const int _maxStringLength = 32;
-        private const int _repeatWordProbablityPercent = 50;
+        private const int _repeatWordProbablityPercent = 1;
 
         private readonly Random _randomizer;
 
