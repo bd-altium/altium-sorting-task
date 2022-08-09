@@ -12,7 +12,7 @@ namespace Sorter.Services
     {
         public List<string> SortedFilePaths { get; set; }
         public string OutputFilePath { get; set; }
-        private const int _numberOfLinesToRead = 100;
+        private const int _numberOfLinesToRead = 10;
         private readonly int _numberOfSplitFiles;
         private readonly StreamReader?[] streams;
         private readonly Queue<QueueItem>[] queues;
@@ -31,10 +31,11 @@ namespace Sorter.Services
         {
             using (var sw = new StreamWriter(OutputFilePath))
             {
-                InitiliazeStreamAndQueues();
+                InitializeStreamsAndQueues();
 
                 while (true)
                 {
+                    // Get first elements of each queye (minimum element of each file)
                     List<QueueItem> list = GetMinItemsFromQueues();
 
                     if (list.Count <= 0)
@@ -42,6 +43,8 @@ namespace Sorter.Services
                         break;
                     }
 
+                    // Get the minimmum element of all files
+                    // Take it from the queue and write to output file
                     var minElement = FindMinElementInQueues(list);
                     sw.WriteLine(minElement);
                 }
@@ -82,7 +85,7 @@ namespace Sorter.Services
             return list;
         }
 
-        private void InitiliazeStreamAndQueues()
+        private void InitializeStreamsAndQueues()
         {
             for (int i = 0; i < _numberOfSplitFiles; i++)
             {

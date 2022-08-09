@@ -9,7 +9,7 @@ namespace Sorter.Services
     public class Splitter
     {
         public string InputPath { get; set; }
-        private const int _chunkSizeInMb = 100;
+        private const int _chunkSizeInMb = 50;
         private const byte _newLineByte = 0xA;
         public Splitter(string inputPath)
         {
@@ -57,6 +57,7 @@ namespace Sorter.Services
                         writer.Write(readBuffer, 0, readBytes);
                         var lastCharacter = readBuffer[readBytes - 1];
 
+                        // Stop writing to file on a line end
                         if (lastCharacter != _newLineByte && remainingInChunk <= 0)
                         {
                             remainingInChunk = 1;

@@ -11,12 +11,12 @@ namespace TestFileGenerator
         public long NumberOfLines { get; set; }
         public string OutputPath { get; set; }
 
-        private const string _outputPathUsedWords = "used-words.dat";
         private const string _characters = "abcdefghijklmnopqrstuvwxyz";
         private const int _maxStringLength = 32;
-        private const int _repeatWordProbablityPercent = 1;
+        private const int _repeatWordProbablityPercent = 5;
 
         private readonly Random _randomizer;
+        private string? _lastWord = string.Empty;
 
 
         public Generator(long numberOfLines, string outputPath)
@@ -27,8 +27,6 @@ namespace TestFileGenerator
         }
         public void Generate()
         {
-            File.WriteAllText(_outputPathUsedWords, string.Empty);
-
             using (StreamWriter sw = File.CreateText(OutputPath))
             {
                 for(long i = 0; i < NumberOfLines; i++)
@@ -72,18 +70,17 @@ namespace TestFileGenerator
                 Enumerable.Repeat(_characters, GenerateStringLength())
                 .Select(s => s[_randomizer.Next(s.Length)]).ToArray());
 
-            File.AppendAllLines(_outputPathUsedWords, new List<string> { word });
+            _lastWord = word;
 
             return word;
         }
 
         private string RepeatWord()
         {
-            string[] lines = File.ReadAllLines(_outputPathUsedWords);
-            if (lines == null || lines.Length == 0)
+            if (string.IsNullOrEmpty(_lastWord))
                 return GenerateNewWord();
 
-            return lines[_randomizer.Next(lines.Length)];
+            return _lastWord;
         }
     }
 }

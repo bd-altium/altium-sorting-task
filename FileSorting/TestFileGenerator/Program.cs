@@ -26,6 +26,8 @@
 
             Generator generator = new Generator(numberOfLines, outputPath);
             generator.Generate();
+
+            Console.WriteLine("File generated");
         }
     }
 }
