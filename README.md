@@ -17,7 +17,7 @@ This solution consist of two projects:
 
     Sorts input file using 3 actions
 
-    - Splitting file into smaller ones (~100MB)
+    - Splitting file into smaller ones (~50MB)
     - Sorting all the files separately
     - Merging sorted chunk files into one output file
   
