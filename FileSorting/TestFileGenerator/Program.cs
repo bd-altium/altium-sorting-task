@@ -19,10 +19,13 @@
                 Console.WriteLine("Please provide output as second parameter");
                 shouldExit = true;
             }
-            string outputPath = args![1];
 
             if (shouldExit)
                 return;
+
+            string outputPath = args![1];
+
+            
 
             Generator generator = new Generator(numberOfLines, outputPath);
             generator.Generate();
